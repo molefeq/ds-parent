@@ -36,9 +36,8 @@
         </dependency>
     </dependencies>
     <scm>
-        <developerConnection>scm:git:https://github.com/molefeq/queads-rewrite.git</developerConnection>
-        <url>https://github.com/molefeq/queads-rewrite</url>
-      <tag>ds-parent-1.0.1</tag>
+        <developerConnection>scm:git:https://github.com/molefeq/ds-parent.git</developerConnection>
+        <url>https://github.com/molefeq/ds-parent</url>
   </scm>
     <build>
         <extensions>
