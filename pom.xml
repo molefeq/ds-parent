@@ -9,7 +9,7 @@
     </parent>
     <groupId>com.que.ads</groupId>
     <artifactId>ds-parent</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1-SNAPSHOT</version>
     <name>ds-parent</name>
     <packaging>pom</packaging>
 
@@ -38,7 +38,7 @@
     <scm>
         <developerConnection>scm:git:https://github.com/molefeq/queads-rewrite.git</developerConnection>
         <url>https://github.com/molefeq/queads-rewrite</url>
-      <tag>ds-parent-1.0.0</tag>
+      <tag>HEAD</tag>
   </scm>
     <build>
         <extensions>
