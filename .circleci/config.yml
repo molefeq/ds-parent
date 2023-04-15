@@ -30,7 +30,7 @@ jobs:
           paths:
             - ~/.m2
           key: v1-dependencies-{{ checksum "pom.xml" }}
-      - run: mvn deploy-s .circleci/settings.xml
+      - run: mvn deploy -s .circleci/settings.xml
 
 
 # Invoke jobs via workflows
