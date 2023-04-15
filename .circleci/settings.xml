@@ -10,5 +10,10 @@ http://maven.apache.org/xsd/settings-1.0.0.xsd">
             <id>packagecloud.snapshots</id>
             <password>${env.PCLOUD}</password>
         </server>
+        <server>
+            <id>github</id>
+            <username>molefeq</username>
+            <password>${env.GITHUB}</password>
+        </server>
     </servers>
 </settings>
