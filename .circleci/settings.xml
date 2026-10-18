@@ -23,7 +23,7 @@ http://maven.apache.org/xsd/settings-1.0.0.xsd">
     http://maven.apache.org/xsd/settings-1.0.0.xsd">
   <servers>
     <server>
-      <id>packagecloud-molefeq</id>
+      <id>packagecloud.snapshots</id>
       <configuration>
         <httpHeaders>
           <property>
