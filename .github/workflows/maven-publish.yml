@@ -24,8 +24,18 @@ jobs:
           java -version
           mvn -version
 
-      - name: Build and verify
-        run: mvn -B clean verify -s .circleci/settings.xml
+      - name: Verify Maven deployment configuration
+        run: |
+          test -f .circleci/settings.xml
+          grep -n -A 15 '<distributionManagement>' pom.xml || true
+          mvn -B help:effective-pom \
+            -Doutput=effective-pom.xml \
+            -s .circleci/settings.xml
 
-      - name: Publish Maven artifact
-        run: mvn -B deploy -s .circleci/settings.xml
+      - name: Build, verify and publish
+        run: |
+          set -euo pipefail
+          mvn -B -ntp clean deploy \
+            -s .circleci/settings.xml \
+            -DskipTests=false \
+            -DskipITs=false
