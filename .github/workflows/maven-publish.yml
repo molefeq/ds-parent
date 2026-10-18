@@ -1,0 +1,54 @@
+
+name: Build and Publish ds-parent
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    runs-on:
+      - codebuild-que-ads-maven-runner-${{ github.run_id }}-${{ github.run_attempt }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Verify Java and Maven
+        run: |
+          java -version
+          mvn -version
+
+      - name: Configure Maven credentials
+        env:
+          PACKAGECLOUD_TOKEN: ${{ secrets.PACKAGECLOUD_TOKEN }}
+        run: |
+          mkdir -p "$HOME/.m2"
+
+          cat > "$HOME/.m2/settings.xml" <<EOF
+          <settings>
+            <servers>
+              <server>
+                <id>packagecloud.releases</id>
+                <username>$PACKAGECLOUD_TOKEN</username>
+                <password>x</password>
+              </server>
+              <server>
+                <id>packagecloud.snapshots</id>
+                <username>$PACKAGECLOUD_TOKEN</username>
+                <password>x</password>
+              </server>
+            </servers>
+          </settings>
+          EOF
+
+      - name: Build and verify
+        run: mvn -B clean verify
+
+      - name: Publish Maven artifact
+        run: mvn -B deploy
