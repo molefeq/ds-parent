@@ -13,8 +13,8 @@ permissions:
 jobs:
   publish:
     runs-on:
-      - codebuild-que-ads-maven-runner-${{ github.run_id }}-${{ github.run_attempt }}
-
+      - codebuild-codebuild-que-ads-maven-runner-${{ github.run_id }}-${{ github.run_attempt }}
+        
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
