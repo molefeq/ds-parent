@@ -24,31 +24,8 @@ jobs:
           java -version
           mvn -version
 
-      - name: Configure Maven credentials
-        env:
-          PACKAGECLOUD_TOKEN: ${{ secrets.PACKAGECLOUD_TOKEN }}
-        run: |
-          mkdir -p "$HOME/.m2"
-
-          cat > "$HOME/.m2/settings.xml" <<EOF
-          <settings>
-            <servers>
-              <server>
-                <id>packagecloud.releases</id>
-                <username>$PACKAGECLOUD_TOKEN</username>
-                <password>x</password>
-              </server>
-              <server>
-                <id>packagecloud.snapshots</id>
-                <username>$PACKAGECLOUD_TOKEN</username>
-                <password>x</password>
-              </server>
-            </servers>
-          </settings>
-          EOF
-
       - name: Build and verify
-        run: mvn -B clean verify
+        run: mvn -B clean verify -s .circleci/settings.xml
 
       - name: Publish Maven artifact
-        run: mvn -B deploy
+        run: mvn -B deploy -s .circleci/settings.xml
